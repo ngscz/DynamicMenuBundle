@@ -1,0 +1,115 @@
+SymfonyContrib\Bundle\DynamicMenuBundle\Entity\MenuItem:
+    type: entity
+    repositoryClass: Gedmo\Tree\Entity\Repository\NestedTreeRepository
+    table: menu_item
+    gedmo:
+        tree:
+            type: nested
+    manyToOne:
+        parent:
+            targetEntity: SymfonyContrib\Bundle\DynamicMenuBundle\Entity\MenuItem
+            fetch: EXTRA_LAZY
+            inversedBy: children
+            joinColumn:
+                name: parent_name
+                referencedColumnName: name
+                onDelete: CASCADE
+                nullable: true
+            gedmo:
+                - treeParent
+        menu:
+            targetEntity: SymfonyContrib\Bundle\DynamicMenuBundle\Entity\MenuItem
+            fetch: EXTRA_LAZY
+            joinColumn:
+                name: menu_name
+                referencedColumnName: name
+                onDelete: CASCADE
+                nullable: true
+    oneToMany:
+        children:
+            targetEntity: SymfonyContrib\Bundle\DynamicMenuBundle\Entity\MenuItem
+            fetch: EXTRA_LAZY
+            mappedBy: parent
+            orderBy:
+                left: ASC
+    id:
+        name:
+            type: string
+            length: 255
+    fields:
+        label:
+            column: link_text
+            type: string
+            length: 255
+            nullable: true
+            options:
+                comment: Text to display.
+        uri:
+            type: string
+            length: 255
+            nullable: true
+            options:
+                comment: URI to place in the link.
+        route:
+            type: string
+            length: 255
+            nullable: true
+            options:
+                comment: Optional Symfony route name to use for URI.
+        routeParameters:
+            column: route_params
+            type: json_array
+            nullable: true
+            options:
+                comment: Parameters to pass to the Symfony route.
+        config:
+            type: json_array
+            nullable: true
+            options:
+                comment: Configuration options as JSON.
+        left:
+            column: lft
+            type: integer
+            gedmo:
+                - treeLeft
+            options:
+                comment: Nested tree left value.
+        right:
+            column: rgt
+            type: integer
+            gedmo:
+                - treeRight
+            options:
+                comment: Nested tree right value.
+        level:
+            column: lvl
+            type: integer
+            gedmo:
+                - treeLevel
+            options:
+                comment: Hierachical level.
+        enabled:
+            type: boolean
+            options:
+                comment: Enabled/Disabled boolean. 1/0
+        display:
+            type: boolean
+            options:
+                comment: Whether to display. 1/0
+        displayChildren:
+            column: display_children
+            type: boolean
+            options:
+                comment: Whether to display children. 1/0
+        created:
+            type: datetime
+            options:
+                comment: Date and time this entry was created.
+        updated:
+            type: datetime
+            nullable: true
+            options:
+                comment: Date and time this entry was updated.
+    lifecycleCallbacks:
+        preUpdate:
+            - preUpdate

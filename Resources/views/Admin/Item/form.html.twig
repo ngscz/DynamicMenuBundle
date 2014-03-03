@@ -1,0 +1,17 @@
+{% extends 'DynamicMenuBundle::layout.html.twig' %}
+
+{% block page_title %}Add Link{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.label) }}
+    {{ form_row(form.uri) }}
+    {{ form_row(form.parent) }}
+    {{ form_row(form.enabled) }}
+    {{ form_row(form.display) }}
+    {{ form_row(form.displayChildren) }}
+    {{ form_widget(form.save) }}
+    {{ form_widget(form.cancel) }}
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,36 @@
+parameters:
+    dynamic_menu.form.menu.class: SymfonyContrib\Bundle\DynamicMenuBundle\Form\MenuForm
+    dynamic_menu.form.item.class: SymfonyContrib\Bundle\DynamicMenuBundle\Form\MenuItemForm
+    dynamic_menu.form.menu_reorder.class: SymfonyContrib\Bundle\DynamicMenuBundle\Form\MenuReorderForm
+    dynamic_menu.twig.extension.class: SymfonyContrib\Bundle\DynamicMenuBundle\Twig\DynamicMenuTwigExtension
+    dynamic_menu.knp_menu.provider.class: SymfonyContrib\Bundle\DynamicMenuBundle\Provider\DynamicMenuProvider
+
+services:
+    dynamic_menu.form.menu:
+        class: %dynamic_menu.form.menu.class%
+        tags:
+            - name: form.type
+              alias: menu_form
+    dynamic_menu.form.item:
+        class: %dynamic_menu.form.item.class%
+        tags:
+            - name: form.type
+              alias: menu_item_form
+    dynamic_menu.form.menu_reorder:
+        class: %dynamic_menu.form.menu_reorder.class%
+        tags:
+            - name: form.type
+              alias: menu_reorder_form
+    dynamic_menu.knp_menu.provider:
+        class: %dynamic_menu.knp_menu.provider.class%
+        arguments:
+          - @doctrine
+        tags:
+          - name: knp_menu.provider
+#    dynamic_menu.twig.extension:
+#        class: %dynamic_menu.twig.extension.class%
+#        arguments:
+#            - @doctrine
+#            - @knp_menu.helper
+#        tags:
+#            - name: twig.extension

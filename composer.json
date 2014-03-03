@@ -1,0 +1,37 @@
+{
+    "name": "symfonycontrib/dynamic-menu-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 menu content system. Allows menus to be content managed.",
+    "keywords": ["Symfony", "bundle", "taxonomy", "tags", "categories"],
+    "homepage": "http://symfonycontrib.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alan Doucette",
+            "email": "dragonwize@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4",
+        "symfony/symfony": "~2.3",
+        "doctrine/orm": "~2.4",
+        "doctrine/doctrine-bundle": "~1.2",
+        "knplabs/knp-menu-bundle": "2.0.*@dev",
+        "symfonycontrib/confirm-bundle": "~1.1",
+        "symfonycontrib/link-button-bundle": "~1.0",
+        "components/tabledrag": "~0.5"
+    },
+    "autoload": {
+        "psr-0": {
+            "SymfonyContrib\\Bundle\\DynamicMenuBundle\\": ""
+        }
+    },
+    "target-dir": "SymfonyContrib/Bundle/DynamicMenuBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

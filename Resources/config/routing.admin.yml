@@ -1,0 +1,47 @@
+dynamic_menu_admin_menu_list:
+    pattern:  /menu
+    defaults:
+        _controller: DynamicMenuBundle:MenuAdmin:list
+
+dynamic_menu_admin_menu_add:
+    pattern:  /menu/add
+    defaults:
+        _controller: DynamicMenuBundle:MenuAdmin:form
+        id: null
+
+dynamic_menu_admin_menu_edit:
+    pattern:  /menu/{menu}/edit
+    defaults:
+        _controller: DynamicMenuBundle:MenuAdmin:form
+
+dynamic_menu_admin_menu_delete:
+    pattern:  /menu/{menu}/delete
+    defaults:
+        _controller: DynamicMenuBundle:MenuAdmin:delete
+
+dynamic_menu_admin_menu_item_list:
+    pattern:  /menu/{menu}/item
+    defaults:
+        _controller: DynamicMenuBundle:MenuItemAdmin:list
+
+dynamic_menu_admin_menu_item_add:
+    pattern:  /menu/{menu}/item/add
+    defaults:
+        _controller: DynamicMenuBundle:MenuItemAdmin:form
+        id: null
+
+dynamic_menu_admin_menu_item_edit:
+    pattern:  /menu/{menu}/item/{name}/edit
+    defaults:
+        _controller: DynamicMenuBundle:MenuItemAdmin:form
+
+dynamic_menu_admin_menu_item_delete:
+    pattern:  /menu/{menu}/item/{name}/delete
+    defaults:
+        _controller: DynamicMenuBundle:MenuItemAdmin:delete
+
+dynamic_menu_test:
+    pattern:  /testmenu
+    defaults:
+        _controller: DynamicMenuBundle:MenuItemAdmin:index
+

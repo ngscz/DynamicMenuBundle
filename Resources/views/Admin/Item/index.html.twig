@@ -1,0 +1,7 @@
+{% extends 'DynamicMenuBundle::layout.html.twig' %}
+
+{% block content %}
+    {{ knp_menu_render(root) }}
+    {{ knp_menu_render('test') }}
+    {{ dynamic_menu_render('test') }}
+{% endblock %}

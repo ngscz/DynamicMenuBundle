@@ -1,0 +1,70 @@
+{% extends 'DynamicMenuBundle::layout.html.twig' %}
+
+{% block page_title %}Links in {{ menu.label }}{% endblock %}
+
+{% block content %}
+    <a href="{{ path('dynamic_menu_admin_menu_item_add', {'menu': menu.name}) }}" class="btn btn-success btn-sm">
+        <span class="glyphicon glyphicon-plus"></span>
+        <strong>Add Link</strong>
+    </a>
+
+    {% if items|length %}
+        {{ form_start(form) }}
+    {% endif %}
+    <table id="menu-item-list" class="table table-striped table-hover tabledrag tabledrag-processed">
+        <thead>
+            <tr class="active">
+                <th>{{ menu.label }}</th>
+                <th>Enabled</th>
+                <th>Displayed</th>
+                <th>Display Children</th>
+                <th class="tabledrag-hide">Parent</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, item in items %}
+                <tr class="draggable">
+                    <td>
+                        {% for i in 2..item.level if item.level > 1 %}
+                            <div class="indentation">&nbsp;</div>
+                        {% endfor %}
+                        <a href="{{ item.uri }}">{{ item.name }}</a>
+                    </td>
+                    <td><span class="{{ item.isEnabled ? 'glyphicon glyphicon-ok' : '' }}"></span></td>
+                    <td><span class="{{ item.isDisplayed ? 'glyphicon glyphicon-ok' : '' }}"></span></td>
+                    <td><span class="{{ item.displayChildren ? 'glyphicon glyphicon-ok' : '' }}"></span></td>
+                    <td class="tabledrag-hide">
+                        {{ form_widget(form.items[key]) }}
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a title="Edit"
+                               href="{{ path('dynamic_menu_admin_menu_item_edit', {'menu': menu.name, 'name': item.name}) }}"
+                               class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a title="Edit"
+                               href="{{ path('dynamic_menu_admin_menu_item_delete', {'menu': menu.name, 'name': item.name}) }}"
+                               class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">
+                        <em>No links in this menu yet.</em>
+                        <a href="{{ path('dynamic_menu_admin_menu_item_add', {'menu': menu.name}) }}">Add a link.</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if items|length %}
+        {{ form_widget(form.save) }}
+        {{ form_widget(form.reset) }}
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}
