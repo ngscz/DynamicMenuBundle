@@ -1,5 +1,5 @@
 {
-    "name": "symfonycontrib/dynamic-menu-bundle",
+    "name": "ngscz/dynamic-menu-bundle",
     "type": "symfony-bundle",
     "description": "Symfony2 menu content system. Allows menus to be content managed.",
     "keywords": ["Symfony", "bundle", "taxonomy", "tags", "categories"],
@@ -18,7 +18,7 @@
         "symfony/symfony": "~2.3",
         "doctrine/orm": "~2.4",
         "doctrine/doctrine-bundle": "~1.2",
-        "knplabs/knp-menu-bundle": "2.0.*@dev",
+        "knplabs/knp-menu-bundle": "^2.0",
         "symfonycontrib/confirm-bundle": "~1.1",
         "symfonycontrib/link-button-bundle": "~1.0",
         "components/tabledrag": "~0.5"
